@@ -1,4 +1,4 @@
-// finish date: 2018/01/05
+// finish date: 2018/01/09
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -20,24 +20,20 @@ bool isExist(char c, string str) {
     return false;
 }
 
+int fact(int n) {
+    int ans = 1;
+    FOR(i, 1, n + 1) {
+        ans *= i;
+    }
+    return ans;
+}
+
 int main() {
     int N;
-    vector<int> C;
-    vector<vector<int>> mul(100,vector<int>(100));
-    double exp; //expected value
-
     cin >> N;
-    C.assign(N,0);
-    rep(i,N) cin >> C[i];
-    sort(C.begin(),C.end());
-    rep(i,N){
-        rep(j,mul.size()){
-            if(C[i]%mul[j][0]==0) mul[j].push_back(C[i]);
-            goto outer;
-        }
-        mul.emplace_back({C[i]});
-        outer:;
-    }
-    printf("%.6f\n",exp);
+    if (N % 1111 == 0) cout << "SAME" << endl;
+    else cout << "DIFFERENT" << endl;
+
     return 0;
 }
+
