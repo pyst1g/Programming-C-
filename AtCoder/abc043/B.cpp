@@ -29,24 +29,18 @@ int fact(int n) {
     return ans;
 }
 
-bool dfs(vector<vector<int>> T, int N, int K, int depth, int val) {
-    if (depth == N) return val == 0;
-    rep(i, K) {
-        if (dfs(T, N, K, depth + 1, val ^ T[depth][i])) return true;
-    }
-    return false;
-}
-
 int main() {
-    int N, K;
-    cin >> N >> K;
-    vector<vector<int>> T(N, vector<int>(K));
-    rep(i, N) rep(j, K) cin >> T[i][j];
-    if (dfs(T, N, K, 0, 0)) cout << "Found" << endl;
-    else cout << "Nothing" << endl;
+    string s;
+    cin >> s;
+    string display = "";
+    rep(i, s.length()) {
+        if (s[i] == 'B') {
+            if (display != "") display = display.substr(0, display.length() - 1);
+        } else {
+            display += s[i];
+        }
+    }
+    cout << display << endl;
 
     return 0;
 }
-
-
-
