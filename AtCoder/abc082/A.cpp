@@ -18,9 +18,9 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
+    int a, b;
+    cin >> a >> b;
+    cout << (a + b + 1) / 2 << endl;
 
 
     return 0;

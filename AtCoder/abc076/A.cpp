@@ -18,10 +18,8 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
-
+    int R, G;
+    cin >> R >> G;
+    cout << R + (G - R) * 2 << endl;
     return 0;
 }

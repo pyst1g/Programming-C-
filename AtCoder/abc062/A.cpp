@@ -18,10 +18,23 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
+    int x,y;
+    cin>>x>>y;
+    map<int,int> mp;
+    mp[1]=0;
+    mp[2]=3;
+    mp[3]=0;
+    mp[4]=2;
+    mp[5]=0;
+    mp[6]=2;
+    mp[7]=0;
+    mp[8]=0;
+    mp[9]=2;
+    mp[10]=0;
+    mp[11]=2;
+    mp[12]=0;
+    if(mp[x]==mp[y]) cout<<"Yes"<<endl;
+    else cout<<"No"<<endl;
 
     return 0;
 }

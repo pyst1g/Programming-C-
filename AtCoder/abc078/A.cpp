@@ -18,10 +18,10 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
-
+    string X, Y;
+    cin >> X >> Y;
+    if (X > Y) cout << ">" << endl;
+    else if (X == Y) cout << "=" << endl;
+    else cout << "<" << endl;
     return 0;
 }

@@ -18,10 +18,10 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
+    int A, B;
+    cin >> A >> B;
+    if (A + B >= 10) cout << "error" << endl;
+    else cout << A + B << endl;
 
     return 0;
 }

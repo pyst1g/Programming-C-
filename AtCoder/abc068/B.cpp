@@ -1,4 +1,4 @@
-// finish date: 2018/01/20
+// finish date: 2018/01/21
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -18,10 +18,15 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
+    int N;
+    cin >> N;
+    for (int i = N; i >= 1; i--) {
+        if ((double) log2(i) - (int) log2(i) == 0) {
+            cout << i << endl;
+            return 0;
+        }
+    }
+    cout << 1 << endl;
 
     return 0;
 }

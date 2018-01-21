@@ -1,4 +1,4 @@
-// finish date: 2018/01/20
+// finish date: 2018/01/21
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -18,10 +18,12 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
-
+    string s, t;
+    cin >> s >> t;
+    sort(s.begin(), s.end());
+    sort(t.begin(), t.end());
+    reverse(t.begin(),t.end());
+    if (s < t) cout << "Yes" << endl;
+    else cout << "No" << endl;
     return 0;
 }

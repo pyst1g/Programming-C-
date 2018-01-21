@@ -1,4 +1,4 @@
-// finish date: 2018/01/20
+// finish date: 2018/01/21
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -18,10 +18,13 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
+    int N;
+    cin >> N;
+    vector<ll> lucas(N + 1);
+    lucas[0] = 2;
+    lucas[1] = 1;
+    FOR(i, 2, N + 1) lucas[i] = lucas[i - 1] + lucas[i - 2];
+    cout << lucas[N] << endl;
 
     return 0;
 }

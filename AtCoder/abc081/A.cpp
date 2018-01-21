@@ -18,9 +18,9 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
+    string s;
+    cin >> s;
+    cout << (s[0] - '0') + (s[1] - '0') + (s[2] - '0') << endl;
 
 
     return 0;

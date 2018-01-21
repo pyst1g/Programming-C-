@@ -18,10 +18,20 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
-
+    string S;
+    cin >> S;
+    char col=' ';
+    int count = 0;
+    rep(i, S.length()) {
+        if(i==0){
+            col = S[i];
+            continue;
+        }
+        if (S[i] != col) {
+            count++;
+        }
+        col = S[i];
+    }
+    cout << count << endl;
     return 0;
 }

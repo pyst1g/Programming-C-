@@ -1,4 +1,4 @@
-// finish date: 2018/01/20
+// finish date: 2018/01/19
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -18,10 +18,19 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
+    int N;
+    cin >> N;
+    int sum, mi=INF;
+    vector<int> a(N);
+    rep(i, N) cin >> a[i];
+    FOR(i,-100,101){
+        sum = 0;
+        rep(j,N){
+            sum += (i-a[j])*(i-a[j]);
+        }
+        mi = min(mi,sum);
+    }
+    cout<<mi<<endl;
 
     return 0;
 }

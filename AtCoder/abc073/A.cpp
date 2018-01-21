@@ -18,10 +18,9 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
-
+    string N;
+    cin >> N;
+    if (N[0] == '9' || N[1] == '9') cout << "Yes" << endl;
+    else cout << "No" << endl;
     return 0;
 }

@@ -18,10 +18,10 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
+    int A,B,C;
+    cin>>A>>B>>C;
+    if(A<=C&&C<=B) cout<<"Yes"<<endl;
+    else cout<<"No"<<endl;
 
     return 0;
 }

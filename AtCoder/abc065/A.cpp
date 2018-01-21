@@ -18,10 +18,11 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
+    int X,A,B;
+    cin>>X>>A>>B;
+    if(A-B>=0) cout<<"delicious"<<endl;
+    else if(X+A-B>=0) cout<<"safe"<<endl;
+    else cout<<"dangerous"<<endl;
 
     return 0;
 }

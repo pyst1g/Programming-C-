@@ -18,10 +18,17 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
+    string S;
+    cin >> S;
+    map<char, int> mp;
+    rep(i, S.length()) {
+        mp[S[i]]++;
+        if (mp[S[i]] >= 2) {
+            cout << "no" << endl;
+            return 0;
+        }
+    }
+    cout << "yes" << endl;
 
     return 0;
 }

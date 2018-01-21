@@ -1,4 +1,4 @@
-// finish date: 2018/01/20
+// finish date: 2018/01/21
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -18,10 +18,16 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
+    int N;
+    cin >> N;
+    int n = N;
+    int sum = 0;
+    while (n != 0) {
+        sum += n % 10;
+        n /= 10;
+    }
+    if (N % sum == 0) cout << "Yes" << endl;
+    else cout << "No" << endl;
 
     return 0;
 }

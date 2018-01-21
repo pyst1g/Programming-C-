@@ -18,10 +18,9 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
+    int n,m;
+    cin>>n>>m;
+    cout<<(n-1)*(m-1)<<endl;
 
     return 0;
 }

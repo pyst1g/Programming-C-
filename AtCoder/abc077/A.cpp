@@ -18,10 +18,12 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
-
+    string C1, C2;
+    cin >> C1 >> C2;
+    string C3 = C1, C4 = C2;
+    reverse(C3.begin(), C3.end());
+    reverse(C4.begin(), C4.end());
+    if (C2 == C3 && C1 == C4) cout << "YES" << endl;
+    else cout << "NO" << endl;
     return 0;
 }

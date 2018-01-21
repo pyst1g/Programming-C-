@@ -18,9 +18,18 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
+    int N, M;
+    cin >> N >> M;
+    map<int, int> mp;
+    int a, b;
+    rep(i, M) {
+        cin >> a >> b;
+        a--;
+        b--;
+        mp[a]++;
+        mp[b]++;
+    }
+    rep(i, N) cout << mp[i] << endl;
 
 
     return 0;

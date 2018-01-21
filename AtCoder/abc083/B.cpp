@@ -1,4 +1,4 @@
-// finish date: 2018/01/20
+// finish date: 2018/01/21
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -18,10 +18,20 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
+    int N, A, B;
+    cin >> N >> A >> B;
+    int n, sum;
+    int ans=0;
+    rep(i, N+1) {
+        n = i;
+        sum = 0;
+        while (n != 0) {
+            sum += n % 10;
+            n /= 10;
+        }
+        if (A <= sum && sum <= B) ans+=i;
+    }
+    cout << ans << endl;
 
     return 0;
 }

@@ -1,4 +1,4 @@
-// finish date: 2018/01/20
+// finish date: 2018/01/21
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -18,10 +18,14 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
+    int N, K;
+    cin >> N >> K;
+    vector<int> l(N);
+    rep(i, N) cin >> l[i];
+    sort(l.begin(),l.end(),greater<int>());
+    int sum = 0;
+    rep(i,K) sum+=l[i];
+    cout<<sum<<endl;
 
     return 0;
 }

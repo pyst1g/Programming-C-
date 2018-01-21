@@ -1,4 +1,4 @@
-// finish date: 2018/01/20
+// finish date: 2018/01/21
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -18,10 +18,16 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
+    int N;
+    cin >> N;
+    int mi = INF, ma = -INF;
+    int a;
+    rep(i, N) {
+        cin >> a;
+        mi = min(mi, a);
+        ma = max(ma, a);
+    }
+    cout << ma - mi << endl;
 
     return 0;
 }

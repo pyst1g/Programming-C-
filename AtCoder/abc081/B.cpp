@@ -1,4 +1,4 @@
-// finish date: 2018/01/20
+// finish date: 2018/01/21
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -18,10 +18,21 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
+    int N;
+    cin >> N;
+    vector<int> a(N);
+    rep(i, N) cin >> a[i];
+    int count = 0;
+    while (true) {
+        rep(i, N) {
+            if (a[i] % 2 == 1) {
+                cout << count << endl;
+                return 0;
+            }
+            a[i] /= 2;
+        }
+        count++;
+    }
 
     return 0;
 }

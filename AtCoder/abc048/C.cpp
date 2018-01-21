@@ -18,10 +18,19 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
-
+    int N, x;
+    cin >> N >> x;
+    int left = 0, right;
+    ll count = 0;
+    rep(i, N) {
+        cin >> right;
+        if (left + right > x) {
+            count += left + right - x;
+            left = x - left;
+        } else {
+            left = right;
+        }
+    }
+    cout << count << endl;
     return 0;
 }

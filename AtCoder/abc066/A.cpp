@@ -18,10 +18,9 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
+    int a, b, c;
+    cin >> a >> b >> c;
+    cout<<a+b+c-max(a,max(b,c))<<endl;
 
     return 0;
 }

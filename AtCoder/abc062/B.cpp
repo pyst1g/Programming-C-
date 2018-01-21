@@ -18,10 +18,19 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
+    int H, W;
+    cin >> H >> W;
+    string s;
+    rep(i, W + 2) cout << "#";
+    cout << endl;
+    rep(i, H) {
+        cin >> s;
+        cout << "#";
+        cout << s;
+        cout << "#" << endl;
+    }
+    rep(i, W + 2) cout << "#";
+    cout << endl;
 
     return 0;
 }

@@ -18,10 +18,16 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
-
+    int N, T, A;
+    cin >> N;
+    ll X = 1, Y = 1;
+    ll n;
+    rep(i, N) {
+        cin >> T >> A;
+        n = max((X+T-1)/T,(Y+A-1)/A);
+        X = n*T;
+        Y = n*A;
+    }
+    cout << X + Y << endl;
     return 0;
 }

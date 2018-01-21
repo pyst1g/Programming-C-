@@ -1,4 +1,4 @@
-// finish date: 2018/01/20
+// finish date: 2018/01/21
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -18,10 +18,16 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
-
+    string S;
+    cin >> S;
+    vector<int> alpha(26, 0);
+    rep(i, S.length()) alpha[S[i] - 'a'] = 1;
+    rep(i, alpha.size()) {
+        if (alpha[i] == 0) {
+            cout << (char) ('a' + i) << endl;
+            return 0;
+        }
+    }
+    cout << "None" << endl;
     return 0;
 }

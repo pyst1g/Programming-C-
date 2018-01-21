@@ -18,10 +18,9 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
+    int N, A, B;
+    cin >> N >> A >> B;
+    cout << min(B, A * N) << endl;
 
     return 0;
 }

@@ -18,10 +18,8 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
-
+    int X, t;
+    cin >> X >> t;
+    cout << max(X - t, 0) << endl;
     return 0;
 }

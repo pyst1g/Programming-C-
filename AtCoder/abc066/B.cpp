@@ -1,4 +1,4 @@
-// finish date: 2018/01/20
+// finish date: 2018/01/21
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -18,10 +18,13 @@ using namespace std;
 
 
 int main() {
-    int M;
-    cin >> M;
-    cout << 48 - M << endl;
-
-
+    string S;
+    cin >> S;
+    S = S.substr(0, S.length() - 1);
+    if (S.length() % 2 == 1) S = S.substr(0, S.length() - 1);
+    while (S.substr(0, S.length() / 2) != S.substr(S.length() / 2, S.length() / 2)) {
+        S = S.substr(0, S.length() - 2);
+    }
+    cout << S.length() << endl;
     return 0;
 }
