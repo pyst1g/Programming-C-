@@ -1,3 +1,6 @@
+
+
+// finish date: 2018/01/28
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -35,51 +38,16 @@ using namespace std;
 #include <map>
 #include <climits>
 
+using namespace std;
 
-//階乗
-int fact(int n) {
-    int ans = 1;
-    FOR(i, 1, n + 1) {
-        ans *= i;
-    }
-    return ans;
+
+int main() {
+    int X,A,B;
+    cin >> X>>A>>B;
+    X=X-A;
+    cout<<X%B<<endl;
+
+
+    return 0;
 }
-
-//組み合わせ
-int nCk(int n, int k) {
-    if (k == 0) return 1;
-    int ans = 1;
-    FOR(i, 1, k + 1) {
-        ans *= n;
-        n--;
-        ans /= i;
-    }
-    return ans;
-}
-
-
-//重複組み合わせ
-int nHk(int n, int k) {
-    return nCk(n + k - 1, k);
-}
-
-
-//最大公約数
-int gcd(int a, int b) {
-    if (a < 0) a = -a;
-    if (b < 0) b = -b;
-    if (a < b) {
-        swap(a, b);
-    }
-    int r = 1; //0以外であれば何でも
-    while (r != 0) {
-        r = a % b;
-        a = b;
-        b = r;
-    }
-    return a;
-}
-
-
-
 
