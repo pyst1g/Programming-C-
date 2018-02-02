@@ -1,4 +1,4 @@
-// finish date: 2018/01/31
+// finish date: 2018/02/02
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -38,40 +38,14 @@ using namespace std;
 
 using namespace std;
 
-struct Union_Find {
-    vector<int> parent;
-    vector<int> sizes;
-    int setnum=0;
 
-    Union_Find(int n) : parent(n), sizes(n, 1) {
-        rep(i, n) parent[i] = i;
-        setnum = n;
-    }
+int main() {
+    ll X, Y;
+    cin >> X >> Y;
+    if (llabs(X - Y) > 1) cout << "Alice" << endl;
+    else cout << "Brown" << endl;
 
-    int find(int x) {
-        if (x == parent[x]) return x;
-        return parent[x] = find(parent[x]);
-    }
 
-    void unite(int x, int y) {
-        x = find(x);
-        y = find(y);
+    return 0;
+}
 
-        if (x == y) return;
-
-        if (sizes[x] < sizes[y]) swap(x, y);
-
-        parent[y] = x;
-        sizes[x] += sizes[y];
-        setnum--;
-    }
-
-    bool isSame(int x, int y) {
-        return find(x) == find(y);
-    }
-
-    int size(int x) {
-        return sizes[find(x)];
-    }
-
-};

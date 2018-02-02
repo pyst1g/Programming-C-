@@ -38,40 +38,34 @@ using namespace std;
 
 using namespace std;
 
-struct Union_Find {
-    vector<int> parent;
-    vector<int> sizes;
-    int setnum=0;
+//足し算
+int add(int a, int b) {
+    return (a + b) % bigmod;
+}
 
-    Union_Find(int n) : parent(n), sizes(n, 1) {
-        rep(i, n) parent[i] = i;
-        setnum = n;
+//掛け算
+int mul(int a, int b) {
+    return (int) (((ll) (a % bigmod) * (b % bigmod)) % bigmod);
+}
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+    vi x(n), y(m);
+    rep(i, n) cin >> x[i];
+    rep(i, m) cin >> y[i];
+    sort(x.begin(), x.end());
+    sort(y.begin(), y.end());
+    int X = 0, Y = 0;
+    rep(i, n - 1) {
+        X = add(X, mul(x[i + 1] - x[i], mul(n - 1 - i, mul(m, (m - 1)) / 2)));
     }
-
-    int find(int x) {
-        if (x == parent[x]) return x;
-        return parent[x] = find(parent[x]);
+    rep(i, m - 1) {
+        Y = add(Y, mul(y[i + 1] - y[i], mul(m - 1 - i, mul(n, (n - 1)) / 2)));
     }
+    cout << mul(X, Y) << endl;
 
-    void unite(int x, int y) {
-        x = find(x);
-        y = find(y);
 
-        if (x == y) return;
+    return 0;
+}
 
-        if (sizes[x] < sizes[y]) swap(x, y);
-
-        parent[y] = x;
-        sizes[x] += sizes[y];
-        setnum--;
-    }
-
-    bool isSame(int x, int y) {
-        return find(x) == find(y);
-    }
-
-    int size(int x) {
-        return sizes[find(x)];
-    }
-
-};

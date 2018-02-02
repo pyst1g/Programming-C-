@@ -1,4 +1,4 @@
-// finish date: 2018/01/31
+// finish date: 2018/02/02
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -16,6 +16,7 @@ using namespace std;
 #define ll long long
 #define vi vector<int>
 #define vvi vector<vector<int>>
+#define vvvi vector<vector<vector<int>>>
 #define vl vector<ll>
 #define vvl vector<vector<ll>>
 #define vb vector<bool>
@@ -38,40 +39,15 @@ using namespace std;
 
 using namespace std;
 
-struct Union_Find {
-    vector<int> parent;
-    vector<int> sizes;
-    int setnum=0;
 
-    Union_Find(int n) : parent(n), sizes(n, 1) {
-        rep(i, n) parent[i] = i;
-        setnum = n;
-    }
+int main() {
+    string s;
+    cin >> s;
+    bool con1 = (s[0] == s[s.length() - 1]);
+    bool con2 = (s.length() % 2 == 1);
+    if (con1^con2) cout << "First" << endl;
+    else cout << "Second" << endl;
 
-    int find(int x) {
-        if (x == parent[x]) return x;
-        return parent[x] = find(parent[x]);
-    }
+    return 0;
+}
 
-    void unite(int x, int y) {
-        x = find(x);
-        y = find(y);
-
-        if (x == y) return;
-
-        if (sizes[x] < sizes[y]) swap(x, y);
-
-        parent[y] = x;
-        sizes[x] += sizes[y];
-        setnum--;
-    }
-
-    bool isSame(int x, int y) {
-        return find(x) == find(y);
-    }
-
-    int size(int x) {
-        return sizes[find(x)];
-    }
-
-};
