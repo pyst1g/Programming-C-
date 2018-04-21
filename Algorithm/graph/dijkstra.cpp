@@ -1,8 +1,8 @@
 //dijkstra(開始ノード、ノード数、edge[頂点名][距離、行先の頂点])
-vi dijkstra(int s, int V, vector<vector<pii>> edge) {
+vi dijkstra(int s, int V, vector <vector<pii>> edge) {
     vi dist(V, INF); //INFの値がこれでいいか確認するべき
     vb used(V, false);
-    priority_queue<pii, vector<pii >, greater<pii>> pq;
+    priority_queue <pii, vector<pii>, greater<pii>> pq;
     pq.push(pii(0, s));
     while (!pq.empty()) {
         int d, t;

@@ -50,6 +50,16 @@ int mul(int a, int b) {
     return (int) (((ll) (a % bigmod) * (b % bigmod)) % bigmod);
 }
 
+int modpow(int a, int b) {
+    if (b == 0) return 1;
+    int temp = modpow(a, b / 2);
+    if (b % 2 == 1) return mul(mul(temp, temp), a);
+    else {
+        return mul(temp, temp);
+    }
+}
+
+
 //割り算  -  逆元(求めたい数とbigmodを渡す)
 int divine(int a, int p = bigmod, int b = -1) {
     if (b < 0) b = p - 2;  //int gyakugen(int a, int p, int b = p - 2とできなかったため。)
