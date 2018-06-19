@@ -1,6 +1,6 @@
-// finish date: 2018/03/16
-
+// finish date: 2018/05/13
 #include <bits/stdc++.h>
+
 
 using namespace std;
 
@@ -23,6 +23,19 @@ using namespace std;
 #define INF 1050000000
 #define pii pair<int,int>
 
+string changeBase(int N, int b, int digit = -1) {
+    string s = "";
+    while (N != 0) {
+        s = to_string(N % b) + s;
+        N /= b;
+    }
+    if (digit != -1) {
+        while (s.length() < digit) {
+            s = "0" + s;
+        }
+    }
+    return s;
+}
 
 int main() {
     int N;
@@ -30,28 +43,32 @@ int main() {
     vi a(N), b(N);
     rep(i, N) cin >> a[i];
     rep(i, N) cin >> b[i];
-    vi digit0(29, 0);
-    vi digit1(29, 0);
-    rep(i, N) {
-        rep(j, digit0.size()) {
-            digit0[j] += !(b[i] >> j & 1);
-            digit1[j] += (b[i] >> j & 1);
+    vi count(30, 0);
+    vl v(N);
+    rep(i, 30) {
+        rep(j, N) {
+            v[j] = (int) (b[j] % ((ll) 1 << (i + 1)));
+        }
+        sort(v.begin(), v.end());
+        rep(j, N) {
+            int Tmin = (1 << i) - (int) (a[j] % ((ll) 1 << (i + 1)));
+            int Tmax = (1 << (i + 1)) - (int) (a[j] % ((ll) 1 << (i + 1)));
+//            cout << distance(lower_bound(v.begin(), v.end(), Tmin),
+//                             lower_bound(v.begin(), v.end(), Tmax)) << " " <<
+//                 distance(lower_bound(v.begin(), v.end(), Tmin + (1 << (i + 1))),
+//                          lower_bound(v.begin(), v.end(), Tmax + (1 << (i + 1)))) << endl;
+            count[i] = (count[i] +
+                        distance(lower_bound(v.begin(), v.end(), Tmin),
+                                 lower_bound(v.begin(), v.end(), Tmax)) +
+                        distance(lower_bound(v.begin(), v.end(), (ll)Tmin + (1 << (i + 1))),
+                                 lower_bound(v.begin(), v.end(), (ll)Tmax + (1 << (i + 1)))))
+                       % 2;
         }
     }
-    vl X(29, 0);
-
-    rep(i, N) {
-        rep(j, digit0.size()) {
-            if (a[i] >> j & 1) {
-                X[j] += digit0[i];
-
-            } else {
-                X[j] += digit1[i];
-            }
-        }
+    int ans = 0;
+    rep(i, 30) {
+        ans += count[i] << i;
     }
-
-
+    cout << ans << endl;
     return 0;
 }
-
