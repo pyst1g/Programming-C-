@@ -1,6 +1,6 @@
 //BellmanFord(開始ノード、ノード数、エッジ数、頂点名、行先の頂点、距離、返り値距離、返り値負閉路(trueだと閉路有))
 template<typename T>
-void BellmanFord2(int s, int V, int E, vector<int> from, vector<int> to, vector<T> d, vector<T> &dist,
+void BellmanFord(int s, int V, int E, vector<int> from, vector<int> to, vector<T> d, vector<T> &dist,
                   vector<bool> &negative) {
     if (typeid(T) == typeid(int)) dist = vector<T>(V, INF);
     else dist = vector<T>(V, LONG_LONG_MAX / 4);

@@ -37,12 +37,12 @@ using namespace std;
 
 //足し算
 int add(int a, int b) {
-    return (a + b) % bigmod;
+    return (int)(((ll)a + b + bigmod) % bigmod);
 }
 
 //引き算
 int sub(int a, int b) {
-    return (a - b + bigmod) % bigmod;
+    return (int)(((ll)a - b + bigmod) % bigmod);
 }
 
 //掛け算
