@@ -1,0 +1,10 @@
+struct zahyou {
+    int x, y;
+
+    bool operator<(const zahyou &another) const {
+        //メンバ変数であるnum1で比較した結果を
+        //この構造体の比較とする
+        return x < another.x;
+    }
+
+};
