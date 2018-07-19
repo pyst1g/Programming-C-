@@ -1,4 +1,4 @@
-// finish date: 2018/07/18
+// finish date: 2018/07/19
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -27,36 +27,63 @@ const int INF = 1050000000;
 const long long INFll = 100000000000000000;
 
 
+//足し算
+int add(int a, int b) {
+    return (int) (((ll) a + b + bigmod) % bigmod);
+}
+
+//引き算
+int sub(int a, int b) {
+    return (int) (((ll) a - b + bigmod) % bigmod);
+}
+
+//掛け算
+int mul(int a, int b) {
+    return (int) (((ll) (a % bigmod) * (b % bigmod)) % bigmod);
+}
+
 int main() {
-    string S;
-    cin >> S;
-    string checker = "";
-    rep(i, S.size()) {
-        if (S[i] != 'x') checker += S[i];
-    }
-    string cr = checker;
-    reverse(cr.begin(), cr.end());
-    if (checker != cr) {
-        cout << -1 << endl;
+    int N;
+    cin >> N;
+    vi T(N);
+    vi A(N);
+    rep(i, N) cin >> T[i];
+    rep(i, N) cin >> A[i];
+    vi h(N, -1);
+    if(N==1 &&A[0] != T[0]){
+        cout<<0<<endl;
         return 0;
     }
-    vi cntX(checker.size() + 1, 0);
-    int idx = 0;
-    rep(i, S.size()) {
-        if (S[i] == 'x') {
-            cntX[idx]++;
-        } else {
-            idx++;
+    h[0] = T[0];
+    FOR(i, 1, N) {
+        if (T[i] != T[i - 1]) h[i] = T[i];
+    }
+    h[N - 1] = A[N - 1];
+    for (int i = N - 1; i >= 0; i--) {
+        if (A[i] < h[i]) {
+            cout << 0 << endl;
+            return 0;
+        }
+        if (A[i] != A[i + 1]) {
+            if (h[i] != -1 && h[i] != A[i]) {
+                cout << 0 << endl;
+                return 0;
+            } else {
+                h[i] = A[i];
+                if (h[i] > T[i]) {
+                    cout << 0 << endl;
+                    return 0;
+                }
+            }
         }
     }
-    int ans = 0;
-    rep(i, (checker.size() + 1) / 2) {
-        ans += abs(cntX[i] - cntX[cntX.size() - 1 - i]);
+    int ans = 1;
+    rep(i, N) {
+        if (h[i] != -1) continue;
+        ans = mul(ans, min(T[i], A[i]));
     }
     cout << ans << endl;
 
     return 0;
 }
-
-
 
