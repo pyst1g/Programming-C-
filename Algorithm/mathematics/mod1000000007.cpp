@@ -60,15 +60,17 @@ int modpow(int a, int b) {
 }
 
 
-//割り算  -  逆元(求めたい数とbigmodを渡す)
-int divine(int a, int p = bigmod, int b = -1) {
+
+
+//割り算(分母だけ)  -  逆元(求めたい数とbigmodを渡す)
+int divide(int a, int p = bigmod, int b = -1) {
     if (b < 0) b = p - 2;  //int gyakugen(int a, int p, int b = p - 2とできなかったため。)
     if (b == 0) return 1;
     else if (b % 2 == 0) {
-        int d = divine(a, p, b / 2);
+        int d = divide(a, p, b / 2);
         return mul(d, d);
     } else {
-        return mul(a, divine(a, p, b - 1));
+        return mul(a, divide(a, p, b - 1));
     }
 }
 
@@ -80,5 +82,5 @@ int nCk_gyakugen(int n, int k, int p = bigmod) {
     int denominator = fact[n];
     int molecule1 = fact[k];
     int molecule2 = fact[n-k];
-    return mul(denominator,mul(divine(molecule1),divine(molecule2)));
+    return mul(denominator,mul(divide(molecule1),divide(molecule2)));
 }
