@@ -8,3 +8,9 @@ struct zahyou {
     }
 
 };
+
+2番目の値でソートしたいとき
+sort(ab.begin(), ab.end(),
+         [](vi a, vi b) {
+             return (a[1] < b[1]);
+         });
