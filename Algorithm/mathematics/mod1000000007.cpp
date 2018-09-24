@@ -35,6 +35,15 @@ using namespace std;
 #include <map>
 #include <climits>
 
+
+//fact定義
+//fact = vi(, 0);
+//fact[0] = 1;
+//FOR(i, 1, fact.size()) {
+//fact[i] = mul(fact[i - 1], i);
+//}
+
+
 //足し算
 int add(int a, int b) {
     return (int)(((ll)a + b + bigmod) % bigmod);
@@ -83,4 +92,23 @@ int nCk_gyakugen(int n, int k, int p = bigmod) {
     int molecule1 = fact[k];
     int molecule2 = fact[n-k];
     return mul(denominator,mul(divide(molecule1),divide(molecule2)));
+}
+
+
+//重複組み合わせ
+int nHk(int n, int k) {
+    return nCk_gyakugen(n + k - 1, k);
+}
+
+
+//素因数分解
+map<int, int> p_fact(int n) {
+    map<int, int> mp;
+    int i = 2;
+    while (n >= i * i) {
+        while (n % i == 0) mp[i]++, n /= i;
+        i++;
+    }
+    if (n != 1) mp[n]++;
+    return mp;
 }

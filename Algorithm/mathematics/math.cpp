@@ -46,8 +46,8 @@ int fact(int n) {
 }
 
 //組みあわせ(階乗factをあらかじめ定義しておく)
-int nCk(int n, int k){
-    return fact(N)/
+int nCk(int n, int k) {
+    return fact(n) / (fact(k) * fact(n - k));
 }
 
 
