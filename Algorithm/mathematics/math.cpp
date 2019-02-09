@@ -87,5 +87,15 @@ int gcd(int a, int b) {
 }
 
 
-
+//素因数分解
+map<int, int> p_fact(int n) {
+    map<int, int> mp;
+    int i = 2;
+    while (n >= i * i) {
+        while (n % i == 0) mp[i]++, n /= i;
+        i++;
+    }
+    if (n != 1) mp[n]++;
+    return mp;
+}
 
