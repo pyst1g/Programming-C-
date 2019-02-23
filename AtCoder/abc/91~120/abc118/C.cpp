@@ -1,4 +1,4 @@
-// finish date: 2019/2/09
+// finish date: 2019/2/16
 
 #include <bits/stdc++.h>
 
@@ -28,20 +28,38 @@ const int bigmod = 1000000007;
 const int INF = 1050000000;
 const long long INFll = 100000000000000000;
 
+//最大公約数
+int gcd(int a, int b) {
+    if (a < 0) a = -a;
+    if (b < 0) b = -b;
+    if (a < b) {
+        swap(a, b);
+    }
+    int r = 1; //0以外であれば何でも
+    while (r != 0) {
+        r = a % b;
+        a = b;
+        b = r;
+    }
+    return a;
+}
 
 int main() {
-    int in;
-    vi v(4,0);
-    rep(i, 6){
-        cin >> in;
-        v[in-1]++;
-    }
-    rep(i,4){
-        if(v[i]==3){
-            cout<<"NO"<<endl;
+    int N;
+    cin >> N;
+    vi A(N);
+    rep(i, N) cin >> A[i];
+    sort(A.begin(), A.end());
+    int ans = A[0];
+    FOR(i, 1, N) {
+        int g = gcd(A[i], A[0]);
+        if (g == 1) {
+            cout << 1 << endl;
             return 0;
         }
+        ans = min(ans, g);
     }
-    cout<<"YES"<<endl;
+    cout << ans << endl;
+
     return 0;
 }

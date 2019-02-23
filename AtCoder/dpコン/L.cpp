@@ -1,4 +1,4 @@
-// finish date: 2019/2/09
+// finish date: 2019/2/22
 
 #include <bits/stdc++.h>
 
@@ -30,18 +30,27 @@ const long long INFll = 100000000000000000;
 
 
 int main() {
-    int in;
-    vi v(4,0);
-    rep(i, 6){
-        cin >> in;
-        v[in-1]++;
-    }
-    rep(i,4){
-        if(v[i]==3){
-            cout<<"NO"<<endl;
-            return 0;
+    int N;
+    cin >> N;
+    vi a(N);
+    rep(i, N) cin >> a[i];
+    vvl dp(N + 1, vl(N + 1, 0));
+    a.push_back(0);
+
+    for (int i = N - 1; i >= 0; i--) {
+        FOR(j, i + 1, N + 1) {
+            if ((N - (j - i)) % 2 == 0) {
+//                太朗の番
+                dp[i][j] = max(dp[i + 1][j] + a[i], dp[i][j - 1] + a[j - 1]);
+            } else {
+//                次郎の番
+                dp[i][j] = min(dp[i + 1][j] - a[i], dp[i][j - 1] - a[j - 1]);
+            }
         }
     }
-    cout<<"YES"<<endl;
+
+    cout << dp[0][N] << endl;
+
+
     return 0;
 }

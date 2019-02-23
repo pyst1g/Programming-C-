@@ -1,4 +1,4 @@
-// finish date: 2019/2/09
+// finish date: 2019/2/14
 
 #include <bits/stdc++.h>
 
@@ -30,18 +30,18 @@ const long long INFll = 100000000000000000;
 
 
 int main() {
-    int in;
-    vi v(4,0);
-    rep(i, 6){
-        cin >> in;
-        v[in-1]++;
-    }
-    rep(i,4){
-        if(v[i]==3){
-            cout<<"NO"<<endl;
-            return 0;
+    int N, K;
+    cin >> N >> K;
+    vi h(N);
+    rep(i, N) cin >> h[i];
+    vi cost(N, INF);
+    cost[0] = 0;
+    rep(i, N) {
+        FOR(j, i + 1, min(N , i + K + 1)) {
+            cost[j] = min(cost[j], cost[i] + abs(h[j] - h[i]));
         }
     }
-    cout<<"YES"<<endl;
+    cout << cost[N - 1] << endl;
+
     return 0;
 }

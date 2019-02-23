@@ -1,4 +1,4 @@
-// finish date: 2019/2/09
+// finish date: 2019/2/22
 
 #include <bits/stdc++.h>
 
@@ -28,20 +28,42 @@ const int bigmod = 1000000007;
 const int INF = 1050000000;
 const long long INFll = 100000000000000000;
 
+//足し算
+int add(int a, int b) {
+    return (int) (((ll) a + b + bigmod) % bigmod);
+}
+
+//引き算
+int sub(int a, int b) {
+    return (int) (((ll) a - b + bigmod) % bigmod);
+}
+
+//掛け算
+int mul(int a, int b) {
+    return (int) (((ll) (a % bigmod) * (b % bigmod)) % bigmod);
+}
+
 
 int main() {
-    int in;
-    vi v(4,0);
-    rep(i, 6){
-        cin >> in;
-        v[in-1]++;
-    }
-    rep(i,4){
-        if(v[i]==3){
-            cout<<"NO"<<endl;
-            return 0;
+    int H, W;
+    cin >> H >> W;
+    vvc a(H, vc(W));
+    rep(i, H) {
+        rep(j, W) {
+            cin >> a[i][j];
         }
     }
-    cout<<"YES"<<endl;
+
+    vvi dp(H, vi(W, 0));
+    dp[0][0] = 1;
+    FOR(i, 1, H) if (a[i][0] == '.') dp[i][0] = dp[i - 1][0];
+    FOR(i, 1, W) if (a[0][i] == '.') dp[0][i] = dp[0][i - 1];
+    FOR(i, 1, H) {
+        FOR(j, 1, W) {
+            if (a[i][j] == '.') dp[i][j] = add(dp[i - 1][j], dp[i][j - 1]);
+        }
+    }
+
+    cout << dp[H - 1][W - 1] << endl;
     return 0;
 }

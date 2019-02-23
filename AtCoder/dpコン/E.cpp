@@ -1,4 +1,4 @@
-// finish date: 2019/2/09
+// finish date: 2019/2/22
 
 #include <bits/stdc++.h>
 
@@ -30,18 +30,23 @@ const long long INFll = 100000000000000000;
 
 
 int main() {
-    int in;
-    vi v(4,0);
-    rep(i, 6){
-        cin >> in;
-        v[in-1]++;
-    }
-    rep(i,4){
-        if(v[i]==3){
-            cout<<"NO"<<endl;
-            return 0;
+    int N, W;
+    cin >> N >> W;
+    vi w(N), v(N);
+    rep(i, N) cin >> w[i] >> v[i];
+
+    vvl dp(N, vl(1000 * N + 1, INFll));
+    dp[0][v[0]] = w[0];
+    ll ma = 0;
+    FOR(i, 1, N) {
+        dp[i][v[i]] = w[i];
+        rep(j, 1000 * N + 1) {
+            dp[i][j] = min(dp[i][j], dp[i - 1][j]);
+            if (j + v[i] <= 1000 * N && dp[i - 1][j] != 0) dp[i][j + v[i]] = min(dp[i][j + v[i]], w[i] + dp[i - 1][j]);
         }
     }
-    cout<<"YES"<<endl;
+    rep(i, N) rep(j, 1000*N + 1) if (dp[i][j] <= W) ma = max(ma, (ll) j);
+    cout << ma << endl;
+
     return 0;
 }

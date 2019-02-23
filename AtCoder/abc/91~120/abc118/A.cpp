@@ -1,4 +1,4 @@
-// finish date: 2019/2/09
+// finish date: 2019/2/16
 
 #include <bits/stdc++.h>
 
@@ -30,18 +30,11 @@ const long long INFll = 100000000000000000;
 
 
 int main() {
-    int in;
-    vi v(4,0);
-    rep(i, 6){
-        cin >> in;
-        v[in-1]++;
-    }
-    rep(i,4){
-        if(v[i]==3){
-            cout<<"NO"<<endl;
-            return 0;
-        }
-    }
-    cout<<"YES"<<endl;
+    int A, B;
+    cin >> A >> B;
+    if (B % A == 0) cout << A + B << endl;
+    else cout << B-A << endl;
+
+
     return 0;
 }

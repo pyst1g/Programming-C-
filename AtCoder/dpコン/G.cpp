@@ -1,4 +1,4 @@
-// finish date: 2019/2/09
+// finish date: 2019/2/22
 
 #include <bits/stdc++.h>
 
@@ -28,20 +28,40 @@ const int bigmod = 1000000007;
 const int INF = 1050000000;
 const long long INFll = 100000000000000000;
 
+vi depth;
+vb used;
+
+int dfs(vector<set<int>> &path, int i) {
+    if (used[i]) return depth[i] + 1;
+    int ma = 0;
+    for (int e: path[i]) {
+        ma = max(ma, dfs(path, e));
+    }
+    used[i] = true;
+    depth[i] = ma;
+    return depth[i] + 1;
+}
 
 int main() {
-    int in;
-    vi v(4,0);
-    rep(i, 6){
-        cin >> in;
-        v[in-1]++;
+    int N, M;
+    cin >> N >> M;
+    vector<set<int>> path(N);
+    depth = vi(N, 0);
+    used = vb(N, false);
+    int x, y;
+    rep(i, M) {
+        cin >> x >> y;
+        x--, y--;
+        path[x].insert(y);
     }
-    rep(i,4){
-        if(v[i]==3){
-            cout<<"NO"<<endl;
-            return 0;
-        }
+    int ma = 0;
+    rep(i, N) {
+        dfs(path, i);
+        ma = max(ma, depth[i]);
     }
-    cout<<"YES"<<endl;
+
+    cout << ma << endl;
+
+
     return 0;
 }

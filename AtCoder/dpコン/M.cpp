@@ -1,4 +1,4 @@
-// finish date: 2019/2/09
+// finish date: 2019/2/22
 
 #include <bits/stdc++.h>
 
@@ -29,19 +29,34 @@ const int INF = 1050000000;
 const long long INFll = 100000000000000000;
 
 
+//足し算
+int add(int a, int b) {
+    return (int) (((ll) a + b + bigmod) % bigmod);
+}
+
+//引き算
+int sub(int a, int b) {
+    return (int) (((ll) a - b + bigmod) % bigmod);
+}
+
+
 int main() {
-    int in;
-    vi v(4,0);
-    rep(i, 6){
-        cin >> in;
-        v[in-1]++;
-    }
-    rep(i,4){
-        if(v[i]==3){
-            cout<<"NO"<<endl;
-            return 0;
+    int N, K;
+    cin >> N >> K;
+    vi a(N);
+    rep(i, N) cin >> a[i];
+    vvi dp(N, vi(K + 2, 0));
+    rep(i, a[0] + 1) dp[0][i] = 1;
+
+    rep(i, N - 1) {
+        rep(j, K + 1) {
+            dp[i + 1][j] = add(dp[i + 1][j], dp[i][j]);
+            dp[i + 1][min(K + 1, j + a[i + 1] + 1)] = sub(dp[i + 1][min(K + 1, j + a[i + 1]) + 1], dp[i][j]);
         }
+        FOR(j, 1, K + 2) dp[i + 1][j] = add(dp[i + 1][j], dp[i + 1][j - 1]);
     }
-    cout<<"YES"<<endl;
+
+    cout << dp[N - 1][K] << endl;
+
     return 0;
 }

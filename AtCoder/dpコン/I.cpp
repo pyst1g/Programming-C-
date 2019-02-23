@@ -1,4 +1,4 @@
-// finish date: 2019/2/09
+// finish date: 2019/2/22
 
 #include <bits/stdc++.h>
 
@@ -30,18 +30,24 @@ const long long INFll = 100000000000000000;
 
 
 int main() {
-    int in;
-    vi v(4,0);
-    rep(i, 6){
-        cin >> in;
-        v[in-1]++;
-    }
-    rep(i,4){
-        if(v[i]==3){
-            cout<<"NO"<<endl;
-            return 0;
+    int N;
+    cin >> N;
+    vd p(N);
+    rep(i, N) cin >> p[i];
+    vvd dp(N, vd(N + 1, 0));
+    dp[0][0] = 1 - p[0];
+    dp[0][1] = p[0];
+    FOR(i, 1, N) {
+        rep(j, N) {
+            dp[i][j] += dp[i - 1][j] * (1 - p[i]);
+            dp[i][j + 1] += dp[i - 1][j] * p[i];
         }
     }
-    cout<<"YES"<<endl;
+    double ans = 0;
+    FOR(i, N / 2 + 1, N + 1) {
+        ans += dp[N - 1][i];
+    }
+    printf("%.10lf", ans);
+
     return 0;
 }

@@ -1,4 +1,4 @@
-// finish date: 2019/2/09
+// finish date: 2019/2/22
 
 #include <bits/stdc++.h>
 
@@ -29,19 +29,30 @@ const int INF = 1050000000;
 const long long INFll = 100000000000000000;
 
 
-int main() {
-    int in;
-    vi v(4,0);
-    rep(i, 6){
-        cin >> in;
-        v[in-1]++;
-    }
-    rep(i,4){
-        if(v[i]==3){
-            cout<<"NO"<<endl;
-            return 0;
+string LCS(string s, string t) {
+//    string s, t;
+//    cin >> s >> t;
+    int n = s.length(), m = t.length();
+    vvi dp(n + 1, vi(m + 1, 0));
+    FOR(i, 1, n + 1) {
+        FOR(j, 1, m + 1) {
+            dp[i][j] = max({dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1] + (s[i - 1] == t[j - 1])});
         }
     }
-    cout<<"YES"<<endl;
-    return 0;
+
+//    LCSの長さだけ返す場合
+//    return dp[n][m];
+
+
+//  LCSに対応する文字列を返す場合
+    string ans = "";
+    int i = n, j = m;
+    while (dp[i][j] != 0) {
+        if (s[i-1]==t[j-1]) {
+            i--, j--;
+            ans = s[i] + ans;
+        } else if (dp[i - 1][j] == dp[i][j]) i--;
+        else j--;
+    }
+    return ans;
 }
