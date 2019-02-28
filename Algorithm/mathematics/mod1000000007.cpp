@@ -46,12 +46,12 @@ using namespace std;
 
 //足し算
 int add(int a, int b) {
-    return (int)(((ll)a + b + bigmod) % bigmod);
+    return (int) (((ll) a + b + bigmod) % bigmod);
 }
 
 //引き算
 int sub(int a, int b) {
-    return (int)(((ll)a - b + bigmod) % bigmod);
+    return (int) (((ll) a - b + bigmod) % bigmod);
 }
 
 //掛け算
@@ -67,8 +67,6 @@ int modpow(int a, int b) {
         return mul(temp, temp);
     }
 }
-
-
 
 
 //割り算(分母だけ)  -  逆元(求めたい数とbigmodを渡す)
@@ -90,8 +88,8 @@ int nCk_gyakugen(int n, int k, int p = bigmod) {
     if (n < k) return 0;
     int denominator = fact[n];
     int molecule1 = fact[k];
-    int molecule2 = fact[n-k];
-    return mul(denominator,mul(divide(molecule1),divide(molecule2)));
+    int molecule2 = fact[n - k];
+    return mul(denominator, mul(divide(molecule1), divide(molecule2)));
 }
 
 
@@ -100,3 +98,30 @@ int nHk(int n, int k) {
     return nCk_gyakugen(n + k - 1, k);
 }
 
+//行列積(mod)　X*Y
+vvi matrix_mul(vvi X, vvi Y) {
+    vvi A(X.size(), vi(Y[0].size(), 0));
+    rep(i, X.size()) rep(j, Y[0].size()) rep(k, X[0].size()) A[i][j] = add(A[i][j], mul(X[i][k], Y[k][j]));
+    return A;
+}
+
+//行列累乗 a^K
+//a:行列 N:aの行(列)数 K:何乗するか
+vvi modpowM(vvi a, int N, ll K) {
+    int k = 1;
+    vvvi A;
+    A.push_back(a);
+    while ((1LL << k) <= K) {
+        A.push_back(matrix_mul(A[k - 1], A[k - 1]));
+        k++;
+    }
+
+    vvi mat(N, vi(N, 0));
+    rep(i, N) mat[i][i] = 1;
+    rep(i, k) {
+        if (K & (1LL << i)) {
+            mat = matrix_mul(mat, A[i]);
+        }
+    }
+    return mat;
+}
