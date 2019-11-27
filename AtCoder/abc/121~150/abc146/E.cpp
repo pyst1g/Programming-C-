@@ -42,22 +42,23 @@ int main() {
         cum[i] = A[i] % K;
         if (i != 0) cum[i] = (cum[i] + cum[i - 1]) % K;
     }
+
+
     ll ans = 0;
     map<int, int> cnt;
-    rep(i, N) {
+    rep(i, min(K - 1, N)) {
 //        cum[i] = (K - cum[i]) % K;
         cnt[cum[i]]++;
     }
-    rep(i, K-1) {
-        if (cum[i] == 0) ans++;
+    ans += cnt[0];
+
+//    int focus = 0;
+    FOR(i, K - 1, N + K - 1) {
+        cnt[cum[i - K + 1]]--;
+        if (i < N) cnt[cum[i]]++;
+        ans += cnt[(cum[i - K + 1]) % K];
     }
 
-    int tmp = 0;
-    rep(i, N) {
-        cnt[cum[i]]--;
-        tmp = (tmp + A[i]) % K;
-        ans += cnt[tmp];
-    }
     cout << ans << endl;
 
     return 0;
