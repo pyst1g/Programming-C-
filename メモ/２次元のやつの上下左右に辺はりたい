@@ -1,0 +1,21 @@
+    int H, W;
+    cin >> H >> W;
+    vs S(H);
+    rep(i, H) cin >> S[i];
+    int N = H * W;
+    vvi dist(N, vi(N, INF));
+    rep(i, N) dist[i][i] = 0;
+    rep(i, H) {
+        rep(j, W) {
+            if (S[i][j] == '#') continue;
+            int x[] = {-1, 0, 1, 0};
+            int y[] = {0, -1, 0, 1};
+            rep(k, 4) {
+                if ((0 <= i + y[k] and i + y[k] < H) and
+                    (0 <= j + x[k] and j + x[k] < W) and
+                    (S[i + y[k]][j + x[k]] == '.')) {
+                    dist[i * W + j % W][(i + y[k]) * W + (j + x[k]) % W] = 1;
+                }
+            }
+        }
+    }
